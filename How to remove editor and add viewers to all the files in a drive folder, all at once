@@ -1,0 +1,19 @@
+function myFiles(){
+    const id = "your-folder-id";
+    const folder = DriveApp.getFolderById(id);
+    const files = folder.getFiles();
+    while(files.hasNext()){
+        const file = files.next();
+        const editors = file.getEditors();
+        Logger.log("+++++" + file.getName() + "+++++")
+        editors.forEach(editor => {
+            outputDriveUser(editor) 
+            file.removeEditor(editor.getEmail())   
+        });
+
+        file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+        file.addViewer("goyal.prachi1212@gmail.com")
+    
+    }
+}
+
