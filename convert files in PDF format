@@ -1,0 +1,13 @@
+function createPdf(){
+  const id = "your_folder_id";
+  const folder = DriveApp.getFolderById(id);
+  const files = folder.getFiles();
+  const folderDes = DriveApp.createFolder("NEW PDF FOLDER")
+  while(files.hasNext()){
+    const file = files.next();
+    const blobFile = file.getAs("application/pdf");
+    blobFile.setName('PDF' + file.getName()+ ".pdf");
+    const newFile = folderDes.createFile(blobFile);
+    Logger.log(newFile.getUrl())
+  }
+}
