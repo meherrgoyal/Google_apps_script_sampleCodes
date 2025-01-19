@@ -1,0 +1,4 @@
+function getQuota(){
+    const quota = MailApp.getRemainingDailyQuota()
+    Logger.log(quota)
+}
