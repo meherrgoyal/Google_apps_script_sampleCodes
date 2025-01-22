@@ -1,0 +1,22 @@
+function sendEmails(){
+    const ss = SpreadsheetApp.openById('your_spreadsheetId')
+    const sheet = ss.getActiveSheet();
+    const lastRow = sheet.getLastRow();
+    const emails = sheet.getRange('B2:B'+ lastRow).getValues();
+    const sendFlags = sheet.getRange('C2:C' + lastRow).getValues();
+    const names = sheet.getRange('A2:A' + lastRow).getValues();
+    const sub = 'Subject';
+    
+    
+   for(let i=0; i<emails.length; i++){
+    const email = emails[i][0];
+    const sendEmails = sendFlags[i][0];
+    const name = names[i][0];
+
+    if(sendEmails === true && name !== ''){
+        let body = `Hello ${name} this is a test email`
+        GmailApp.sendEmail(email, sub, body);
+        Logger.log(`Email has been sent to ${name}`)
+    }
+   }
+}
