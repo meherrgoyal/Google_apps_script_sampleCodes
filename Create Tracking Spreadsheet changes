@@ -1,0 +1,17 @@
+function logChanges(){
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const sheet = ss.getSheetByName('your_sheetName');
+    const range = e.range;
+    const time = new Date();
+    const user = Session.getActiveUser().getEmail();
+    sheet.appendRow([time, user, range.getA1Notation(), value])
+    
+}
+
+function createTrigger(){
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    ScriptApp.newTrigger('track changes')
+        .forSpreadsheet(ss)
+        .onEdit()
+        .create();
+}
