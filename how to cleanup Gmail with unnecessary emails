@@ -1,0 +1,14 @@
+function getMyThreads(){
+    const unread = GmailApp.getInboxUnreadCount();
+    Logger.log(unread);
+    const threads = GmailApp.getInboxThreads();
+    const emails = GmailApp.search('from: "your_senders_email"');
+    for(let i=0; i<emails.length; i++){
+        let email = emails[i];
+        let messages = email.getMessages();
+        for(let j=0; j<messages.length; j++){
+            let message = messages[j];
+            message.moveToTrash();
+        }
+    }
+}
