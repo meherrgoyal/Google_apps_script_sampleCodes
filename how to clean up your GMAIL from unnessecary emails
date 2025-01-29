@@ -1,0 +1,13 @@
+function moveToTrash(){
+    const unread = GmailApp.getInboxUnreadCount();
+    Logger.log(unread);
+    const emails = GmailApp.search('from: "care@emaila.1mg.com"');
+    for(let i= 0; i< emails.length; i++){
+        const email = emails[i];
+        let messages = email.getMessages();
+        for(let j=0; j<messages.length; j++){
+            let message = messages[j];
+            message.moveToTrash()
+        }
+    }
+    }
