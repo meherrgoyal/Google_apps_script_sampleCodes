@@ -1,0 +1,10 @@
+function onEdit(e){
+    const ss = SpreadsheetApp.getActiveSpreadsheet().getSheetById('SheetId')
+    const range = e.range;
+    const value = range.getValues();
+    if(value >100){
+        range.setBackground('blue')
+    }else{
+        range.setBackground('null')
+    }
+}
